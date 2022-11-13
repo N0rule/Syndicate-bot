@@ -27,8 +27,10 @@ client.on('messageCreate', async (message) => {
             _id: message.author.id
             
         }, {
-            is_bot:message.author.bot,
+            
             username:message.author.tag,
+            ServerJoinDate:message.member.joinedAt,
+            is_bot:message.author.bot,
             _id: message.author.id,
             $inc: {
                 messageCount: 1,

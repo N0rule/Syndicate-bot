@@ -11,11 +11,17 @@ const messageCountSchema = new Schema ({
         type: String,
         required:true
     },
+    ServerJoinDate:
+    {
+        type: Date,
+        required:true
+    },   
     is_bot:
     {
         type: String,
         required:true
     },
+
     messageCount: {
         type: Number,
         required: true
