@@ -1,3 +1,5 @@
+
+console.log('-------- Loading Packages --------');
 const fs = require('node:fs');
 const path = require('node:path');
 const {Client,Events,Collection,GatewayIntentBits,} = require ("discord.js")
@@ -37,8 +39,8 @@ for (const file of commandFiles) {
     mongoose.connect(process.env.MONGO_URI ,{
 
     keepAlive: true
-    });
-});
+    }).then(console.log('--- M O N G O  C O N N E C T E D ---'));
+
 //Executing commands
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -51,6 +53,7 @@ client.on(Events.InteractionCreate, async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
+        //Error Text of any command
 		await interaction.reply({ content: 'Ошибка обработки команды!', ephemeral: true });
 	}
 });
@@ -76,5 +79,27 @@ client.on('messageCreate', async (message) => {
         )
 });
 //--------------------------
+//---------Here To Set The Activity Status---------\\
 
+client.on("ready", async () => {
+    console.log(`---------Powered By N0rule---------`)
+    const Botdiscr = [
+      'Люблю Котика',
+      'Люблю Вовчика',
+      'Люблю Богдана',
+      'Люблю Лешу',
+      'Дима Пидор',
+    ];
+    const status = [
+        'dnd',
+        'idle',
+        'online'
+      ];
+setInterval(() => {
+    client.user.setPresence({ activities: [{ name: Botdiscr[Math.floor(Math.random() * Botdiscr.length)] }], status: status[Math.floor(Math.random() * status.length)] });
+}, 15000)
+
+  });
+  //---------End--------\\
+  console.log(`---------Успешно Запущенно---------`);
 client.login(process.env.TOKEN);
