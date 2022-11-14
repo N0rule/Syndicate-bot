@@ -35,7 +35,7 @@ for (const file of commandFiles) {
 
 
 client.on('ready', () => {
-    console.log('Бот запущен)
+    console.log('Бот запущен')
 //mongodb connect
     mongoose.connect(process.env.MONGO_URI ,{
 
